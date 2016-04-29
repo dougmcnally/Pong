@@ -101,7 +101,7 @@ public class Pong extends JPanel implements ActionListener, KeyListener {
 		if (roundOver) {			
 			g.drawString("Press Space to Start", 150, 50);
 			if ((playerScore == 0 && compScore == 0) || 
-					(playerScore >= 5 || compScore >= 5)) {
+					(playerScore >= MAX_SCORE || compScore >= MAX_SCORE)) {
 				g.setFont(new Font("Arial", 1, 20));
 				g.drawString("Press d to change difficulty", 10, HEIGHT - 10);
 			}			
@@ -142,7 +142,7 @@ public class Pong extends JPanel implements ActionListener, KeyListener {
 			try {
 				diff = Double.parseDouble(diffStr);
 			}
-			catch (NumberFormatException e) {}
+			catch (NumberFormatException e) { e.printStackTrace(); }
 			if (diff < 0 || diff > 1) {
 				JOptionPane.showMessageDialog(this, "Invalid value!");
 			}			
@@ -175,7 +175,7 @@ public class Pong extends JPanel implements ActionListener, KeyListener {
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_D &&
 				roundOver && ((playerScore == 0 && compScore == 0) || 
-				(playerScore >= 5 || compScore >= 5))) {
+				(playerScore >= MAX_SCORE || compScore >= MAX_SCORE))) {
 			changeAIDiff();						
 		}
 	}
